@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright (C) 2015 The Android Open Source Project
 #
@@ -36,7 +36,7 @@ ff_list = []
 
 r = re.compile(r'#define\s+(\S+)\s+((?:0x)?\d+)')
 
-with open('/usr/arm-linux-gnueabihf/include/linux/input.h', 'r') as f:
+with open('/usr/include/linux/input.h', 'r') as f:
   for line in f:
     m = r.match(line)
     if m:
@@ -71,11 +71,11 @@ with open('/usr/arm-linux-gnueabihf/include/linux/input.h', 'r') as f:
         ff_list.append(name)
 
 def Dump(struct_name, values):
-  print 'static struct label %s[] = {' % (struct_name)
+  print('static struct label %s[] = {' % (struct_name))
   for value in values:
-    print '    LABEL(%s),' % (value)
-  print '    LABEL_END,'
-  print '};'
+    print('    LABEL(%s),' % (value))
+  print('    LABEL_END,')
+  print('};')
 
 Dump("input_prop_labels", input_prop_list)
 Dump("ev_labels", ev_list)
